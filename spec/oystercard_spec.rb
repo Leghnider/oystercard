@@ -1,4 +1,6 @@
 require 'oystercard'
+require 'station'
+require 'journey'
 
 describe Oystercard do 
   let(:oyster) {Oystercard.new}
@@ -10,14 +12,6 @@ describe Oystercard do
   context 'initial state of oystercard' do
     it 'has a default balance of zero' do
       expect(oyster.balance).to eq(0)
-    end
-
-    it 'is intially not in a journey' do
-      expect(subject).not_to be_in_journey
-    end
-
-    it 'has an empty list of journeys by default' do
-      expect(subject.journeys).to be_empty
     end
   end
 
@@ -72,7 +66,7 @@ describe Oystercard do
     
     it 'stores a journey' do 
       subject.touch_out(exit_station)
-      expect(subject.journeys).to include journey 
+      expect(subject.journeys).not_to be_empty
     end
   end
   
